@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+  labels:
+    app: np-connect
+spec:
+  selector:
+    matchLabels:
+      app: np-connect
+  template:
+    metadata:
+      labels:
+        app: np-connect
+    spec:
+      containers:
+      - name: python-app
+        image: localhost:5000/pt:v1
+        ports:
+        - containerPort: 8888
+        env:
+          - name: NODE_SERVER
+            value: node-service
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: python-service
+  labels:
+    app: np-connect
+spec:
+  type: NodePort
+  selector:
+    app: np-connect
+  ports:
+  - port: 80
+    targetPort: 8888

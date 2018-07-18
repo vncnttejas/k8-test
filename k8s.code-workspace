@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "node"
+		},
+		{
+			"path": "python"
+		},
+		{
+			"path": "k8s"
+		}
+	],
+	"settings": {}
+}
